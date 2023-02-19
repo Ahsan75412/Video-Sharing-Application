@@ -4,6 +4,7 @@ import Youtube from './api/Youtube';
 import SearchBar from './components/SearchBar';
 import { useState } from 'react';
 import VideoDetail from './components/VideoDetail';
+import VideoList from './components/VideoList';
 
 function App() {
   const [videos , setVideos] = useState([]);
@@ -21,7 +22,7 @@ function App() {
               <VideoDetail video={selectedVideo}/>
             </Grid>
             <Grid item xs={4}>
-              {/* {VideoList} */}
+              <VideoList videos = {videos} onVideoSelect={setSelectedVideos} />
             </Grid>
 
           </Grid>
