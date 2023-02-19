@@ -1,5 +1,7 @@
 import { Grid } from '@mui/material';
 import './App.css';
+import Youtube from './api/Youtube';
+import SearchBar from './components/SearchBar';
 
 function App() {
   return (
@@ -7,7 +9,7 @@ function App() {
       <Grid item xs={11}>
           <Grid container spacing={10}>
             <Grid item xs={12}>
-              {/* {searchBar} */}
+              <SearchBar onSubmit={handleSubmit}/>
             </Grid>
             <Grid item xs={8}>
               {/* {VideoDetail} */}
@@ -20,6 +22,17 @@ function App() {
       </Grid>
     </Grid>
   );
+  async function handleSubmit(searchItem){
+    const response = await Youtube.get("search" , {
+      params: {
+        part: "snippet",
+        maxResults: 5,
+        key: "AIzaSyBXPPZ9GZnKKMRbnWyESe8w5I9smRisrkg",
+        q: searchItem,
+      }
+    });
+    console.log(response);
+  }
 }
 
 export default App;
